@@ -17,3 +17,9 @@ The output is written on the standard output in tab-separated format, one tweet 
 
 At the moment the configuration is hard-coded at the top of the script.
 You will need a valid Twitter developer API key to make it work. See https://dev.twitter.com/streaming/overview
+
+## dependencies
+
+simplejson
+requests
+requests_oauthlib
