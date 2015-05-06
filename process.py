@@ -24,12 +24,14 @@ def json2tab(tweet):
         else:
             coordinates = None
         
+        language = tweet['lang']
+
         # timestamp
         created_at = datetime.datetime.strptime(tweet['created_at'], "%a %b %d %H:%M:%S +0000 %Y") #  Wed Feb 08 22:49:40 +0000 2012
         timestamp = datetime.datetime.strftime(created_at, "%s")
         
         # write record in CSV format (if language is Italian)
-        return "{0}\t{1}\t{2}\t{3}\t{4}\n".format(id_str, timestamp, username, coordinates, text.encode("utf-8")), tweet["id"]
+        return "{0}\t{1}\t{2}\t{3}\t{4}\t{5}\n".format(id_str, timestamp, username, language, coordinates, text.encode("utf-8")), tweet["id"]
             
     # tweet is unreadable
     except:
