@@ -1,4 +1,4 @@
-# getusertweets 
+# twittercrawler 
 
 A script to download all the available tweets from a
 Twitter user or from a list of keywords.
