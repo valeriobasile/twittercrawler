@@ -17,7 +17,6 @@ auth = OAuth1(config['consumer_key'],
               config['oauth_token'], 
               config['oauth_secret'])
 
-
 # parse command line options
 parser = OptionParser()
 parser.add_option('-t',
@@ -47,6 +46,6 @@ if options.crawl_type == 'user':
 elif options.crawl_type == 'keyword':
     get_keywords_stream(auth, args, config, options.format, fd_out)
 else:
-    sys.stderr.write('unknown type: {}\n'.format(options.crawl_type))
+    sys.stderr.write('unknown crawl type: {}\n'.format(options.crawl_type))
     sys.exit(1)
 fd_out.close()
