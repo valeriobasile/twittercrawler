@@ -5,17 +5,17 @@ import requests
 from requests_oauthlib import OAuth1
 import datetime
 from time import sleep
+import yaml
 
-URL = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
-COUNT = '200'   # number of tweets to download in one batch
-WAIT = 30       # waiting time between batches
+with open('config.yaml') as fd_conf:
+    config = yaml.load(fd_conf)
 
 # OAuth 1 authentication (insert your data here)
-consumer_key=''
-consumer_secret=''
-oauth_token=''
-oauth_secret=''
-auth = OAuth1(consumer_key, consumer_secret, oauth_token, oauth_secret)
+# OAuth 1 authentication
+auth = OAuth1(config['consumer_key'], 
+              config['consumer_secret'], 
+              config['oauth_token'], 
+              config['oauth_secret'])
 
 # convert a tweet in JSON format to a tab-separated format
 def json2tab(tweet):
@@ -59,7 +59,7 @@ def getTweets(screen_name, count, max_id=None):
         'screen_name':screen_name,
         'count':count,
         'max_id':max_id}
-    response = requests.get(URL, params=args, auth=auth, stream=True)
+    response = requests.get(config['url_user'], params=args, auth=auth, stream=True)
     return response.json()
 
 # iteratively downloads batches of tweets from the user screen_name until
@@ -74,7 +74,7 @@ def getTweetsByScreenname(screen_name):
     while not end:
         # tweets come from the most recent to the oldest, thus at each iteration
         # we update max_id
-        new_tweets = getTweets(screen_name, COUNT, max_id)
+        new_tweets = getTweets(screen_name, config['count'], max_id)
         if len(new_tweets) == 0:
             end = True
         for tweet in new_tweets:
@@ -88,7 +88,7 @@ def getTweetsByScreenname(screen_name):
                 end = True
 
         # let's not put too much pressure on the API
-        sleep(WAIT)
+        sleep(config['wait'])
     sys.stderr.write("retrieved {0} tweets\n".format(retrieved))
 
 if __name__=="__main__":
