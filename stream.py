@@ -20,5 +20,6 @@ def get_keywords_stream(auth, keywords, config, output_format, output_file):
                     output_file.write(tweet_tab)
                 else:
                     output_file.write(json.dumps(tweet))
+                    output_file.write('\n')
             except:
                 sys.stderr.write('error parsing tweet\n')
