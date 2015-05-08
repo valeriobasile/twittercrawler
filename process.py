@@ -3,10 +3,10 @@ import sys
 import datetime
 
 # convert a tweet in JSON format to a tab-separated format
-def json2tab(tweet):
+def json2tab(tweet, retweets):
     try:
         # ignore re-tweets
-        if "retweeted_status" in tweet:
+        if (not retweets) and ("retweeted_status" in tweet):
             return None, None
         
         id_str = tweet["id_str"]

@@ -33,7 +33,7 @@ def get_users_tweets(auth, screen_names, config, output_format, output_file):
             if len(new_tweets) == 0:
                 end = True
             for tweet in new_tweets:
-                tweet_tab, last_id = json2tab(tweet)                
+                tweet_tab, last_id = json2tab(tweet, config['retweets'])
                 if tweet_tab:
                     # write out the tweet
                     if output_format == 'tsv':
