@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import sys
 import datetime
+import yaml
+import json
 
 # convert a tweet in JSON format to a tab-separated format
 def json2tab(tweet, retweets):
@@ -38,3 +40,10 @@ def json2tab(tweet, retweets):
         sys.stderr.write("error parsing tweet\n")
         return None, None
         
+# this module can also be called on the command line as a filter
+if __name__ == "__main__":
+    for line in sys.stdin:
+        tweet = json.loads(line)
+        tweet_tab, _ = json2tab(tweet, True)
+        sys.stdout.write(tweet_tab)
+

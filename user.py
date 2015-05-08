@@ -40,6 +40,7 @@ def get_users_tweets(auth, screen_names, config, output_format, output_file):
                         output_file.write(tweet_tab)
                     else:
                         output_file.write(json.dumps(tweet))
+                        output_file.write('\n')
                     retrieved += 1
                     max_id = last_id - 1
                 else:
