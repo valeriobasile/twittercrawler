@@ -12,8 +12,9 @@ First of all, install the dependencies:
     requests_oauthlib
     yaml
 
-Then, fill in the authentication info in *config.yaml*. The config
-file also contains a few default values for the script.
+Then, make a copy of `config.yaml.sample` called `config.yaml` and fill in the
+authentication info. The config file also contains a few default values for the
+script.
 
 ## Running
 
