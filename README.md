@@ -41,6 +41,10 @@ tab-separated format, one tweet per line. The fields are:
 The **-o output_file** option specifies a file to write the output. If
 existing, the file will be overwritten.
 
+The **filter.py** module also acts as a command line filter, reading a 
+JSON output file on its standard input and writing out the corresponding 
+tab-separated format.
+
 ## Disclaimer
 
 The copyright of the tweets belongs to Twitter. Please refer to

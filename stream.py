@@ -16,7 +16,7 @@ def get_keywords_stream(auth, keywords, config, output_format, output_file):
             try:
                 tweet = json.loads(line)
                 if output_format == 'tsv':
-                    tweet_tab, _ = json2tab(tweet)
+                    tweet_tab, _ = json2tab(tweet, config['retweets'])
                     output_file.write(tweet_tab)
                 else:
                     output_file.write(json.dumps(tweet))
