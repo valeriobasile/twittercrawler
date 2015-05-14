@@ -26,6 +26,10 @@ To search for keywords in the stream of tweets run as:
 
     crawl.py -t keyword keyword1 [keyword2 ...]
 
+To get a stream with a small sample of all tweets on Twitter run as:
+
+    crawl.py -t sample
+
 By default, the output is written on the standard output in the JSON
 format returned by the Twitter API. If the **-f tsv** option is
 provided, the output is written on the standard output in
