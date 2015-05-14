@@ -12,8 +12,9 @@ First of all, install the dependencies:
     requests_oauthlib
     yaml
 
-Then, fill in the authentication info in *config.yaml*. The config
-file also contains a few default values for the script.
+Then, make a copy of `config.yaml.sample` called `config.yaml` and fill in the
+authentication info. The config file also contains a few default values for the
+script.
 
 ## Running
 
@@ -24,6 +25,10 @@ To download all* the tweets from a list of users run as:
 To search for keywords in the stream of tweets run as:
 
     crawl.py -t keyword keyword1 [keyword2 ...]
+
+To get a stream with a small sample of all tweets on Twitter run as:
+
+    crawl.py -t sample
 
 By default, the output is written on the standard output in the JSON
 format returned by the Twitter API. If the **-f tsv** option is
