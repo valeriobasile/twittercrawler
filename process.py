@@ -13,11 +13,12 @@ def json2tab(tweet, retweets):
         
         id_str = tweet["id_str"]
         
-        # tweet text (escape double quotes, remove newlines)  
+        # tweet text (escape double quotes, remove newlines and tabs)  
         text = tweet["text"]
         text = text.replace("\"","\\\"").replace("\n","")
+        text = text.replace("\t"," ")
         
-        # user (escape double quotes, remove newlines)  
+        # user  
         username = tweet["user"]["screen_name"]
         
         # geolocation
