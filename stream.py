@@ -10,13 +10,13 @@ def get_keywords_stream(auth, keywords, config, output_format, output_file):
     # POST data: list of keywords to search
     data = {'track':keywords}
     response = requests.post(config['url_filter'], data=data, auth=auth, stream=True)
-    process_response(response, output_format, output_file)
+    process_response(config, response, output_format, output_file)
 
 def get_sample_stream(auth, config, output_format, output_file):
     response = requests.post(config['url_sample'], auth=auth, stream=True)
-    process_response(response, output_format, output_file)
+    process_response(config, response, output_format, output_file)
 
-def process_response(response, output_format, output_file):
+def process_response(config, response, output_format, output_file):
     for line in response.iter_lines():
         if line:
             try:
