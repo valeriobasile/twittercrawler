@@ -14,7 +14,10 @@ def json2tab(tweet, retweets):
         id_str = tweet["id_str"]
         
         # tweet text (escape double quotes, remove newlines and tabs)  
-        text = tweet["text"]
+        if "extended_tweet" in tweet:
+            text = tweet["extended_tweet"]["full_text"]
+        else:
+            text = tweet["text"]
         text = text.replace("\"","\\\"").replace("\n","")
         text = text.replace("\t"," ")
         

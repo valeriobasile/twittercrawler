@@ -8,7 +8,7 @@ from process import json2tab
 
 def get_keywords_stream(auth, keywords, config, output_format, output_file):
     # POST data: list of keywords to search
-    data = {'track':keywords}
+    data = {'track':keywords, "language":config['language'], 'tweet_mode': 'extended'}
     response = requests.post(config['url_filter'], data=data, auth=auth, stream=True)
     process_response(config, response, output_format, output_file)
 
