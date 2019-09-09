@@ -3,6 +3,7 @@
 from optparse import OptionParser
 from user import get_users_tweets
 from stream import get_keywords_stream, get_sample_stream
+from search import get_search_tweets
 import sys
 import yaml
 from requests_oauthlib import OAuth1
@@ -45,6 +46,8 @@ if options.crawl_type == 'user':
     get_users_tweets(auth, args, config, options.format, fd_out)
 elif options.crawl_type == 'keyword':
     get_keywords_stream(auth, args, config, options.format, fd_out)
+elif options.crawl_type == 'search':
+    get_search_tweets(auth, args, config, options.format, fd_out)
 elif options.crawl_type == 'sample':
     get_sample_stream(auth, config, options.format, fd_out)
 else:
