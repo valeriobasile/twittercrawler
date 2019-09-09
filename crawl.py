@@ -9,7 +9,7 @@ import yaml
 from requests_oauthlib import OAuth1
 
 with open('config.yaml') as fd_conf:
-    config = yaml.load(fd_conf)
+    config = yaml.load(fd_conf, Loader=yaml.SafeLoader)
 
 # OAuth 1 authentication (insert your data here)
 # OAuth 1 authentication
