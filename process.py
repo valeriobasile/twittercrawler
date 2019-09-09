@@ -17,7 +17,7 @@ def json2tab(tweet, retweets):
         if "extended_tweet" in tweet:
             text = tweet["extended_tweet"]["full_text"]
         else:
-            text = tweet["text"]
+            text = tweet["full_text"]
         text = text.replace("\"","\\\"").replace("\n","")
         text = text.replace("\t"," ")
         
@@ -40,8 +40,9 @@ def json2tab(tweet, retweets):
         return "{0}\t{1}\t{2}\t{3}\t{4}\t{5}\n".format(id_str, timestamp, username, language, coordinates, text.encode("utf-8")), tweet["id"]
             
     # tweet is unreadable
-    except:
+    except Exception as e: 
         sys.stderr.write("error parsing tweet\n")
+        print(e)
         return None, None
         
 # this module can also be called on the command line as a filter
