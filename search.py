@@ -1,34 +1,37 @@
 #!/usr/bin/env python
 import sys
 import json
-import requests
 from time import sleep
 from process import json2tab
+from requests import get
 
-# retrieve 'count' tweets from the Twitter API
+
+# Retrieve 'count' Tweets from the Twitter API
 def get_tweets(auth, query, config, max_id=None):
     args = {
-        'include_entities':'true',
-        'q':query,
-        'count':config['count'],
-        'max_id':max_id,
+        'include_entities': 'true',
+        'q': query,
+        'count': config['count'],
+        'max_id': max_id,
         'tweet_mode': 'extended'}
-    response = requests.get(config['url_search'], params=args, auth=auth, stream=True)
+    response = get(
+        config['url_search'], params=args, auth=auth, stream=True)
     return response.json()
 
-# iteratively downloads batches of tweets from the user screen_name until
-# there are no more tweet
+
+# Iteratively downloads batches of Tweets from the user screen_name until
+# there are no more Tweets
 def get_search_tweets(auth, queries, config, output_format, output_file):
     for query in queries:
         sys.stderr.write("retrieving tweets for query: {0}\n".format(query))
         retrieved = 0
-        tweets = []
         max_id = None
         end = False
-        # loop until there's no more tweet
+
+        # Loop until there's no more Tweets
         while not end:
-            # tweets come from the most recent to the oldest, thus at each iteration
-            # we update max_id
+            # Tweets come from the most recent to the oldest,
+            # thus at each iteration we update max_id
             new_tweets = get_tweets(auth, query, config, max_id)["statuses"]
             if len(new_tweets) == 0:
                 end = True
@@ -49,5 +52,3 @@ def get_search_tweets(auth, queries, config, output_format, output_file):
             # let's not put too much pressure on the API
             sleep(config['wait'])
         sys.stderr.write("retrieved {0} tweets\n".format(retrieved))
-
-
