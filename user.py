@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-import simplejson as json
+import json
 import requests
 from time import sleep
 from process import json2tab
@@ -12,7 +12,10 @@ def get_tweets(auth, screen_name, config, max_id=None):
         'include_rts':'true',
         'screen_name':screen_name,
         'count':config['count'],
-        'max_id':max_id}
+        'max_id':max_id,
+        'tweet_mode': 'extended'
+    }
+
     response = requests.get(config['url_user'], params=args, auth=auth, stream=True)
     return response.json()
 
@@ -49,5 +52,3 @@ def get_users_tweets(auth, screen_names, config, output_format, output_file):
             # let's not put too much pressure on the API
             sleep(config['wait'])
         sys.stderr.write("retrieved {0} tweets\n".format(retrieved))
-
-

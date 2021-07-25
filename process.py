@@ -13,7 +13,7 @@ def json2tab(tweet, retweets):
         
         id_str = tweet["id_str"]
         
-        # tweet text (escape double quotes, remove newlines and tabs)  
+        # tweet text (escape double quotes, remove newlines and tabs)
         if "extended_tweet" in tweet:
             text = tweet["extended_tweet"]["full_text"]
         else:
@@ -33,9 +33,8 @@ def json2tab(tweet, retweets):
         language = tweet['lang']
 
         # timestamp
-        created_at = datetime.datetime.strptime(tweet['created_at'], "%a %b %d %H:%M:%S +0000 %Y") #  Wed Feb 08 22:49:40 +0000 2012
-        timestamp = datetime.datetime.strftime(created_at, "%s")
-        
+        timestamp = datetime.datetime.strptime(tweet['created_at'], "%a %b %d %H:%M:%S +0000 %Y").timestamp() #  Wed Feb 08 22:49:40 +0000 2012
+
         # write record in CSV format (if language is Italian)
         return "{0}\t{1}\t{2}\t{3}\t{4}\t{5}\n".format(id_str, timestamp, username, language, coordinates, text.encode("utf-8")), tweet["id"]
             

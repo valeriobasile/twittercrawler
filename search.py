@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-import simplejson as json
+import json
 import requests
 from time import sleep
 from process import json2tab
