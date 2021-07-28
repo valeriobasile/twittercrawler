@@ -1,2 +1,5 @@
 config.yaml
 *.pyc
+__pycache__
+poetry.lock
+

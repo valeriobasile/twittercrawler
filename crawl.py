@@ -13,9 +13,9 @@ with open('config.yaml') as fd_conf:
 
 # OAuth 1 authentication (insert your data here)
 # OAuth 1 authentication
-auth = OAuth1(config['consumer_key'], 
-              config['consumer_secret'], 
-              config['oauth_token'], 
+auth = OAuth1(config['consumer_key'],
+              config['consumer_secret'],
+              config['oauth_token'],
               config['oauth_secret'])
 
 # parse command line options
@@ -23,7 +23,8 @@ parser = OptionParser()
 parser.add_option('-t',
                   '--type',
                   dest='crawl_type',
-                  help='REQUIRED: type of crawl, either \'user\' (default), \'keyword\' or \'sample\'',
+                  help='REQUIRED: type of crawl, either \
+                      \'user\' (default), \'keyword\' or \'sample\'',
                   default='user')
 parser.add_option('-f',
                   '--format',
