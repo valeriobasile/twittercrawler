@@ -3,7 +3,6 @@ chardet==3.0.4
 future==0.15.2
 idna==2.6
 oauthlib==1.1.2
-pkg-resources==0.0.0
 ply==3.8
 pureyaml==0.1.0
 PyYAML==5.4
